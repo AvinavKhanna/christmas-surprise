@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Christmas Surprise</title>
+  <style>
+    :root{
+      --bg1:#0b1020; --bg2:#1b2a4a;
+      --card: rgba(255,255,255,.10);
+      --card2: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.18);
+      --btn: rgba(255,255,255,.18);
+      --btnHover: rgba(255,255,255,.26);
+      --accent: #ffd27a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background: radial-gradient(1200px 600px at 20% 0%, #2c3f77 0%, transparent 60%),
+                  radial-gradient(900px 500px at 100% 20%, #6c2f68 0%, transparent 55%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:28px;
+    }
+    .wrap{width:min(720px, 100%);}
+    .header{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:14px;
+    }
+    h1{margin:12px 0 8px; font-size:34px; letter-spacing:.2px}
+    p{margin:0 auto; max-width:52ch; color:var(--muted); line-height:1.5}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: var(--card);
+      border-radius:18px;
+      padding:16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .card h2{margin:0 0 6px; font-size:18px}
+    .card p{max-width:none}
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    button, a.btn{
+      border:1px solid var(--border);
+      background: var(--btn);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition: .15s ease;
+    }
+    button:hover, a.btn:hover{background: var(--btnHover); transform: translateY(-1px);}
+    .hidden{display:none}
+    .sectionTitle{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .pill{
+      font-size:13px; color:var(--muted);
+      border:1px solid var(--border);
+      padding:4px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.12);
+      white-space:nowrap;
+    }
+    ol{margin:10px 0 0; padding-left:18px; color:var(--text);}
+    li{margin:8px 0; color:var(--muted); line-height:1.5}
+    .choice{
+      margin-top:10px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: var(--card2);
+    }
+    .choice h3{margin:0 0 4px; font-size:16px}
+    .choice p{margin:0; color:var(--muted)}
+    .footer{
+      text-align:center;
+      margin-top:14px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .accent{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="badge">🎄 Christmas Surprise</div>
+      <h1>Choose your gift <span class="accent">🎁</span></h1>
+      <p>Pick one option below. (No wrong answers, just different kinds of fun.)</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="sectionTitle">
+          <h2>Gift Option 1: Treasure Hunt</h2>
+          <span class="pill">in the house 🏠</span>
+        </div>
+        <p>A little adventure with clues that lead you to your surprise.</p>
+        <div class="btnRow">
+          <button onclick="show('hunt')">Open Treasure Hunt</button>
+          <button onclick="hideAll()">Back</button>
+        </div>
+
+        <div id="hunt" class="hidden">
+          <hr style="border:0;border-top:1px solid var(--border); margin:14px 0;">
+          <p style="margin-bottom:8px;"><strong>Treasure Hunt Instructions</strong></p>
+
+          <!-- EDIT THESE CLUES -->
+          <ol>
+            <li>Start at: <strong>[e.g. the Christmas tree]</strong>. Look for <strong>[a note / ribbon / envelope]</strong>.</li>
+            <li>Clue 2: Go to <strong>[e.g. the pantry]</strong> and check <strong>[specific spot]</strong>.</li>
+            <li>Clue 3: Head to <strong>[e.g. the bedroom]</strong> and look <strong>[under / behind]</strong>.</li>
+            <li>Final: Your surprise is <strong>[location]</strong> 🎁</li>
+          </ol>
+
+          <p class="footer">Tip: keep clues short + very specific so it’s fun, not frustrating.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sectionTitle">
+          <h2>Gift Option 2: Creative Classes</h2>
+          <span class="pill">you choose ✨</span>
+        </div>
+        <p>Pick one class (or tell me your top choice). I’ll book it for you.</p>
+
+        <div class="btnRow">
+          <button onclick="show('classes')">View Class Choices</button>
+          <button onclick="hideAll()">Back</button>
+        </div>
+
+        <div id="classes" class="hidden">
+          <hr style="border:0;border-top:1px solid var(--border); margin:14px 0;">
+
+          <div class="choice">
+            <h3>1) Resin Class</h3>
+            <p>Make something glossy + gorgeous (coasters, trays, jewellery, etc.).</p>
+            <!-- Optional: link to a form or booking -->
+            <div class="btnRow"><a class="btn" href="#" onclick="picked('Resin Class'); return false;">Pick Resin</a></div>
+          </div>
+
+          <div class="choice">
+            <h3>2) Candle Making</h3>
+            <p>Create your own scent + pour your own candle(s).</p>
+            <div class="btnRow"><a class="btn" href="#" onclick="picked('Candle Making'); return false;">Pick Candle</a></div>
+          </div>
+
+          <div class="choice">
+            <h3>3) Pottery</h3>
+            <p>Hands-on clay time (wheel or hand-building depending on the class).</p>
+            <div class="btnRow"><a class="btn" href="#" onclick="picked('Pottery'); return false;">Pick Pottery</a></div>
+          </div>
+
+          <p id="result" class="footer"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" style="margin-top:18px;">
+      Made with ❤️ for Christmas.
+    </div>
+  </div>
+
+  <script>
+    function hideAll(){
+      document.querySelectorAll('#hunt, #classes').forEach(el => el.classList.add('hidden'));
+      document.getElementById('result').textContent = "";
+    }
+    function show(id){
+      hideAll();
+      document.getElementById(id).classList.remove('hidden');
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+    function picked(choice){
+      // simplest: just show on screen. You can replace with a Google Form link or mailto.
+      document.getElementById('result').textContent = `You picked: ${choice} 🎉`;
+    }
+  </script>
+</body>
+</html>
