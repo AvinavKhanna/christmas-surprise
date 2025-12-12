@@ -166,3 +166,218 @@
       flex-wrap: wrap;
       margin-top: 14px;
     }
+
+    button, a.btn{
+      appearance:none;
+      border:0;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 650;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      user-select:none;
+    }
+
+    .primary{
+      background: var(--btn);
+      color: var(--btnText);
+      box-shadow: 0 12px 26px rgba(43,34,48,.20);
+    }
+    .primary:hover{ transform: translateY(-1px); box-shadow: 0 16px 30px rgba(43,34,48,.24); }
+
+    .soft{
+      background: var(--btnSoft);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .soft:hover{ background: var(--btnSoftHover); transform: translateY(-1px); }
+
+    .section{
+      margin-top: 14px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      animation: pop .18s ease-out;
+    }
+
+    @keyframes pop{
+      from{ transform: translateY(4px); opacity: .2; }
+      to{ transform: translateY(0); opacity: 1; }
+    }
+
+    hr{
+      border:0;
+      border-top:1px solid var(--border);
+      margin: 14px 0;
+    }
+
+    ol{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin: 9px 0; line-height: 1.55; }
+
+    .choice{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.72);
+      border-radius: 18px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+    .choice h3{
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+    .choice p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14.5px;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top: 14px;
+      color: rgba(107,95,115,.86);
+      font-size: 13px;
+    }
+
+    .tiny{
+      font-size: 12.5px;
+      color: rgba(107,95,115,.90);
+    }
+
+    .sparkle{
+      display:inline-block;
+      transform: translateY(-1px);
+      color: var(--gold);
+      text-shadow: 0 8px 18px rgba(201,161,74,.25);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="tag"><span class="dot"></span> A little Christmas surprise for Mum</div>
+      <h1>Choose your gift <span class="sparkle">✨</span></h1>
+      <p class="subtitle">
+        Pick one of the two options below. Either way, it’s something made with lots of love 🤍
+      </p>
+    </div>
+
+    <div class="grid">
+      <!-- Card 1: Treasure Hunt -->
+      <div class="card">
+        <div class="inner">
+          <div class="row">
+            <h2 class="title">Gift Option 1: Treasure Hunt</h2>
+            <span class="pill">at home 🏡</span>
+          </div>
+          <p class="desc">A cosy little clue trail around the house leading to your surprise.</p>
+
+          <div class="btnRow">
+            <button class="primary" onclick="toggleSection('hunt')">Open the treasure hunt</button>
+            <button class="soft" onclick="hideAll()">Close</button>
+          </div>
+
+          <div id="hunt" class="section" style="display:none;">
+            <p style="margin:0 0 8px;"><strong>Treasure Hunt Instructions</strong></p>
+
+            <!-- EDIT THESE CLUES LATER -->
+            <ol>
+              <li>Start at: <strong>[e.g. the Christmas tree]</strong>. Look for <strong>[a note / ribbon / envelope]</strong>.</li>
+              <li>Clue 2: Go to <strong>[e.g. the pantry]</strong> and check <strong>[specific spot]</strong>.</li>
+              <li>Clue 3: Head to <strong>[e.g. the bedroom]</strong> and look <strong>[under / behind]</strong>.</li>
+              <li>Final: Your surprise is at <strong>[location]</strong> 🎁</li>
+            </ol>
+
+            <hr>
+            <p class="tiny" style="margin:0;">
+              Tip: Keep clues short + super specific (so it’s fun, not frustrating).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Classes -->
+      <div class="card">
+        <div class="inner">
+          <div class="row">
+            <h2 class="title">Gift Option 2: Creative Classes</h2>
+            <span class="pill">your choice 🌷</span>
+          </div>
+          <p class="desc">Pick one class and I’ll organise the rest.</p>
+
+          <div class="btnRow">
+            <button class="primary" onclick="toggleSection('classes')">View the class options</button>
+            <button class="soft" onclick="hideAll()">Close</button>
+          </div>
+
+          <div id="classes" class="section" style="display:none;">
+            <div class="choice">
+              <h3>1) Resin Class</h3>
+              <p>Create something glossy and beautiful (coasters, tray, jewellery, etc.).</p>
+              <div class="btnRow">
+                <a class="btn soft" href="#" onclick="picked('Resin Class'); return false;">Pick Resin</a>
+              </div>
+            </div>
+
+            <div class="choice">
+              <h3>2) Candle Making</h3>
+              <p>Choose a scent you love and pour your own candle(s).</p>
+              <div class="btnRow">
+                <a class="btn soft" href="#" onclick="picked('Candle Making'); return false;">Pick Candle Making</a>
+              </div>
+            </div>
+
+            <div class="choice">
+              <h3>3) Pottery</h3>
+              <p>A hands-on clay session (wheel or hand-building, depending on the studio).</p>
+              <div class="btnRow">
+                <a class="btn soft" href="#" onclick="picked('Pottery'); return false;">Pick Pottery</a>
+              </div>
+            </div>
+
+            <p id="result" class="footer" style="margin-top:10px;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" style="margin-top:18px;">
+      Made with love 🤍
+    </div>
+  </div>
+
+  <script>
+    function hideAll(){
+      const ids = ['hunt','classes'];
+      ids.forEach(id => document.getElementById(id).style.display = 'none');
+      const result = document.getElementById('result');
+      if(result) result.textContent = "";
+    }
+
+    function toggleSection(id){
+      const el = document.getElementById(id);
+      const isOpen = el.style.display !== 'none';
+      hideAll();
+      el.style.display = isOpen ? 'none' : 'block';
+      if(!isOpen){
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function picked(choice){
+      const result = document.getElementById('result');
+      if(result) result.textContent = `You picked: ${choice} ✨`;
+    }
+  </script>
+</body>
+</html>
