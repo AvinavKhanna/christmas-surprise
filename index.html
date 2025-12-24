@@ -29,6 +29,7 @@
 
       --shadow: 0 18px 55px rgba(30, 15, 40, .14);
       --radius: 22px;
+      --slide-size: clamp(200px, 30vw, 300px);
     }
 
     *{ box-sizing:border-box; }
@@ -243,7 +244,7 @@
     .choiceTop{
       display:flex;
       gap:12px;
-      align-items:center;
+      align-items:flex-start;
     }
 
     /* swipeable mini carousel */
@@ -301,14 +302,14 @@
       font-size: 13px;
     }
 
-    .slider{
-  width:140px;
+.slider{
+  width:var(--slide-size);
   flex:0 0 auto;
 }
 
 .slider img{
-  width:140px;
-  height:140px;
+  width:100%;
+  height:var(--slide-size);
   object-fit:cover;
   border-radius:18px;
   border:1px solid var(--border);
@@ -319,8 +320,9 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-top:6px;
-  font-size:13px;
+  gap:10px;
+  margin-top:8px;
+  font-size:14px;
   color:var(--muted);
 }
 
@@ -328,8 +330,45 @@
   border:1px solid var(--border);
   background:rgba(255,255,255,.7);
   border-radius:10px;
-  padding:2px 8px;
+  min-width:34px;
+  height:28px;
+  padding:0 10px;
+  font-size:16px;
+  font-weight:600;
+  line-height:1;
+  position:relative;
+  color:transparent;
   cursor:pointer;
+}
+
+.sliderControls button::before{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:var(--ink);
+  content:"";
+}
+
+.sliderControls button:first-child::before{
+  content:"<";
+}
+
+.sliderControls button:last-child::before{
+  content:">";
+}
+
+@media (max-width: 640px){
+  .choiceTop{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .slider{
+    width:100%;
+  }
+  .slider img{
+    height:clamp(220px, 60vw, 320px);
+  }
 }
   </style>
 </head>
