@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Christmas Surprise</title>
+  <title>Secret Surprise</title>
   <meta name="theme-color" content="#f7cfe3" />
+
   <style>
     :root{
       --bg1:#fff7fb;
@@ -47,7 +48,7 @@
       padding:28px 18px;
     }
 
-    .wrap{ width:min(820px, 100%); }
+    .wrap{ width:min(860px, 100%); }
 
     .top{
       text-align:center;
@@ -77,17 +78,25 @@
 
     h1{
       margin: 14px 0 8px;
-      font-size: clamp(28px, 4.2vw, 44px);
+      font-size: clamp(26px, 4.2vw, 44px);
       letter-spacing: .2px;
-      line-height: 1.08;
+      line-height: 1.12;
     }
 
     .subtitle{
       margin: 0 auto;
-      max-width: 58ch;
+      max-width: 62ch;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.6;
       font-size: 15.5px;
+    }
+    .subtitle + .subtitle { margin-top: 8px; }
+
+    .sparkle{
+      display:inline-block;
+      transform: translateY(-1px);
+      color: var(--gold);
+      text-shadow: 0 8px 18px rgba(201,161,74,.25);
     }
 
     .grid{
@@ -126,7 +135,7 @@
       position:relative;
       z-index:1;
       padding: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.62));
+      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.62));
     }
 
     .row{
@@ -210,18 +219,17 @@
       to{ transform: translateY(0); opacity: 1; }
     }
 
-    hr{
-      border:0;
-      border-top:1px solid var(--border);
-      margin: 14px 0;
-    }
-
-    ol{
+    .poem{
       margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(126, 84, 150, .22);
+      background: rgba(255,255,255,.72);
+      color: rgba(43,34,48,.82);
+      line-height: 1.7;
+      font-size: 15px;
+      white-space: pre-line;
     }
-    li{ margin: 9px 0; line-height: 1.55; }
 
     .choice{
       border: 1px solid var(--border);
@@ -229,7 +237,52 @@
       border-radius: 18px;
       padding: 12px;
       margin-top: 10px;
+      overflow:hidden;
     }
+
+    .choiceTop{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    /* swipeable mini carousel */
+    .carousel{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      overflow-x:auto;
+      display:flex;
+      gap:6px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling: touch;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.6);
+      flex: 0 0 auto;
+    }
+
+    .carousel img{
+      width:64px;
+      height:64px;
+      object-fit:cover;
+      flex: 0 0 auto;
+      scroll-snap-align:center;
+      border-radius:14px;
+    }
+
+    .potteryPlaceholder{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      border:1px dashed var(--border);
+      background: rgba(255,255,255,.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      flex: 0 0 auto;
+    }
+
     .choice h3{
       margin: 0 0 4px;
       font-size: 16px;
@@ -247,101 +300,107 @@
       color: rgba(107,95,115,.86);
       font-size: 13px;
     }
-
-    .tiny{
-      font-size: 12.5px;
-      color: rgba(107,95,115,.90);
-    }
-
-    .sparkle{
-      display:inline-block;
-      transform: translateY(-1px);
-      color: var(--gold);
-      text-shadow: 0 8px 18px rgba(201,161,74,.25);
-    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <div class="top">
-      <div class="tag"><span class="dot"></span> A little Christmas surprise for Mum</div>
-      <h1>Choose your gift <span class="sparkle">✨</span></h1>
-      <p class="subtitle">
-        Pick one of the two options below. Either way, it’s something made with lots of love 🤍
-      </p>
+      <div class="tag"><span class="dot"></span> A secret surprise for <strong>Monia</strong>, from her Secret Santa</div>
+      <h1>Santa’s stocks are doing well <span class="sparkle">✨</span></h1>
+      <p class="subtitle">…so he’s feeling extra generous this year.</p>
+      <p class="subtitle">Below, he has <strong>two gifts</strong> for you. Choose one of the options below.</p>
     </div>
 
     <div class="grid">
-      <!-- Card 1: Treasure Hunt -->
+      <!-- Option 1 -->
       <div class="card">
         <div class="inner">
           <div class="row">
-            <h2 class="title">Gift Option 1: Treasure Hunt</h2>
-            <span class="pill">at home 🏡</span>
+            <h2 class="title">Option 1: Something glamorous</h2>
+            <span class="pill">a little mystery 💎</span>
           </div>
-          <p class="desc">A cosy little clue trail around the house leading to your surprise.</p>
+          <p class="desc">A hint, a hunt, and a sparkly surprise.</p>
 
           <div class="btnRow">
-            <button class="primary" onclick="toggleSection('hunt')">Open the treasure hunt</button>
+            <button class="primary" onclick="toggleSection('glam')">Reveal option 1</button>
             <button class="soft" onclick="hideAll()">Close</button>
           </div>
 
-          <div id="hunt" class="section" style="display:none;">
-            <p style="margin:0 0 8px;"><strong>Treasure Hunt Instructions</strong></p>
-
-            <!-- EDIT THESE CLUES LATER -->
-            <ol>
-              <li>Start at: <strong>[e.g. the Christmas tree]</strong>. Look for <strong>[a note / ribbon / envelope]</strong>.</li>
-              <li>Clue 2: Go to <strong>[e.g. the pantry]</strong> and check <strong>[specific spot]</strong>.</li>
-              <li>Clue 3: Head to <strong>[e.g. the bedroom]</strong> and look <strong>[under / behind]</strong>.</li>
-              <li>Final: Your surprise is at <strong>[location]</strong> 🎁</li>
-            </ol>
-
-            <hr>
-            <p class="tiny" style="margin:0;">
-              Tip: Keep clues short + super specific (so it’s fun, not frustrating).
-            </p>
+          <div id="glam" class="section" style="display:none;">
+            <p style="margin:0 0 8px;"><strong>For your first gift, take a think:</strong></p>
+            <div class="poem">In the kitchen, but not by the sink.
+Skip the cupboard used every day,
+The quiet one will lead the way.
+It holds no spice, no pan, no plate,
+Just some pages that kindly wait.</div>
           </div>
         </div>
       </div>
 
-      <!-- Card 2: Classes -->
+      <!-- Option 2 -->
       <div class="card">
         <div class="inner">
           <div class="row">
-            <h2 class="title">Gift Option 2: Creative Classes</h2>
-            <span class="pill">your choice 🌷</span>
+            <h2 class="title">Option 2: Something to experience</h2>
+            <span class="pill">choose your vibe 🌷</span>
           </div>
-          <p class="desc">Pick one class and I’ll organise the rest.</p>
+          <p class="desc">Pick one creative class — I’ll handle the rest.</p>
 
           <div class="btnRow">
-            <button class="primary" onclick="toggleSection('classes')">View the class options</button>
+            <button class="primary" onclick="toggleSection('classes')">Reveal option 2</button>
             <button class="soft" onclick="hideAll()">Close</button>
           </div>
 
           <div id="classes" class="section" style="display:none;">
+            <!-- Resin (5 images) -->
             <div class="choice">
-              <h3>1) Resin Class</h3>
-              <p>Create something glossy and beautiful (coasters, tray, jewellery, etc.).</p>
+              <div class="choiceTop">
+                <div class="carousel" aria-label="Resin images">
+                  <img src="images/resin1.jpg" alt="Resin class 1">
+                  <img src="images/resin2.jpg" alt="Resin class 2">
+                  <img src="images/resin3.jpg" alt="Resin class 3">
+                  <img src="images/resin4.jpg" alt="Resin class 4">
+                  <img src="images/resin5.jpg" alt="Resin class 5">
+                </div>
+                <div>
+                  <h3>Resin class</h3>
+                  <p>Create something glossy & gorgeous (coasters, trays, jewellery).</p>
+                </div>
+              </div>
               <div class="btnRow">
-                <a class="btn soft" href="#" onclick="picked('Resin Class'); return false;">Pick Resin</a>
+                <button class="soft" onclick="choose('Resin class')">Choose Resin</button>
               </div>
             </div>
 
+            <!-- Candle (2 images) -->
             <div class="choice">
-              <h3>2) Candle Making</h3>
-              <p>Choose a scent you love and pour your own candle(s).</p>
+              <div class="choiceTop">
+                <div class="carousel" aria-label="Candle images">
+                  <img src="images/candle1.jpg" alt="Candle making 1">
+                  <img src="images/candle2.jpg" alt="Candle making 2">
+                </div>
+                <div>
+                  <h3>Candle making</h3>
+                  <p>Pick a scent you love and pour your own candle(s).</p>
+                </div>
+              </div>
               <div class="btnRow">
-                <a class="btn soft" href="#" onclick="picked('Candle Making'); return false;">Pick Candle Making</a>
+                <button class="soft" onclick="choose('Candle making')">Choose Candle Making</button>
               </div>
             </div>
 
+            <!-- Pottery (no images – elegant placeholder) -->
             <div class="choice">
-              <h3>3) Pottery</h3>
-              <p>A hands-on clay session (wheel or hand-building, depending on the studio).</p>
+              <div class="choiceTop">
+                <div class="potteryPlaceholder" aria-label="Pottery">🏺</div>
+                <div>
+                  <h3>Pottery</h3>
+                  <p>A hands-on clay session — wheel or hand-building.</p>
+                </div>
+              </div>
               <div class="btnRow">
-                <a class="btn soft" href="#" onclick="picked('Pottery'); return false;">Pick Pottery</a>
+                <button class="soft" onclick="choose('Pottery')">Choose Pottery</button>
               </div>
             </div>
 
@@ -358,8 +417,7 @@
 
   <script>
     function hideAll(){
-      const ids = ['hunt','classes'];
-      ids.forEach(id => document.getElementById(id).style.display = 'none');
+      ['glam','classes'].forEach(id => document.getElementById(id).style.display = 'none');
       const result = document.getElementById('result');
       if(result) result.textContent = "";
     }
@@ -369,14 +427,39 @@
       const isOpen = el.style.display !== 'none';
       hideAll();
       el.style.display = isOpen ? 'none' : 'block';
-      if(!isOpen){
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if(!isOpen) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Optional: email notifications via Formspree
+    // 1) Create a Formspree form, copy its URL
+    // 2) Paste it below. If blank, the site still works (no emails).
+    const FORMSPREE_URL = ""; // e.g. "https://formspree.io/f/abcdwxyz"
+
+    async function sendToFormspree(payload){
+      if(!FORMSPREE_URL) return false;
+      try{
+        const res = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        return res.ok;
+      }catch(e){
+        return false;
       }
     }
 
-    function picked(choice){
+    async function choose(choice){
       const result = document.getElementById('result');
-      if(result) result.textContent = `You picked: ${choice} ✨`;
+      if(result) result.textContent = `You chose: ${choice} ✨`;
+
+      const ok = await sendToFormspree({
+        type: "class_choice",
+        choice,
+        when: new Date().toISOString()
+      });
+
+      if(ok && result) result.textContent = `You chose: ${choice} ✨ (sent)`;
     }
   </script>
 </body>
