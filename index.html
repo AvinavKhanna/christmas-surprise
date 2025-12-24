@@ -384,70 +384,70 @@ Just some pages that kindly wait.</div>
           </div>
 
           <div id="classes" class="section" style="display:none;">
-            <!-- Resin (5 images) -->
-            <div class="choice">
-              <div class="choiceTop">
-                <div class="carousel" aria-label="Resin images">
-                 <div class="choice">
-                  <div class="choiceTop">
-                    <div class="slider" data-images="5">
-                      <img id="resinImg" src="images/resin1.png" alt="Resin class">
-                      <div class="sliderControls">
-                        <button onclick="prev('resin')">◀</button>
-                        <span id="resinCount">1 / 5</span>
-                        <button onclick="next('resin')">▶</button>
-                      </div>
-                    </div>
-                
-                    <div>
-                      <h3>Resin class</h3>
-                      <p>Create something glossy & gorgeous (coasters, trays, jewellery).</p>
-                    </div>
-                  </div>
-                
-                  <div class="btnRow">
-                    <button class="soft" onclick="choose('Resin class')">Choose Resin</button>
-                  </div>
-                </div>
 
-            <!-- Candle (2 images) -->
-           <div class="choice">
-            <div class="choiceTop">
-              <div class="slider" data-images="2">
-                <img id="candleImg" src="images/candle1.png" alt="Candle making">
-                <div class="sliderControls">
-                  <button onclick="prev('candle')">◀</button>
-                  <span id="candleCount">1 / 2</span>
-                  <button onclick="next('candle')">▶</button>
-                </div>
-              </div>
-          
-              <div>
-                <h3>Candle making</h3>
-                <p>Pick a scent you love and pour your own candle(s).</p>
-              </div>
-            </div>
-          
-            <div class="btnRow">
-              <button class="soft" onclick="choose('Candle making')">Choose Candle Making</button>
-            </div>
-          </div>
+  <!-- Resin (5 images) -->
+  <div class="choice">
+    <div class="choiceTop">
+      <div class="slider">
+        <img id="resinImg" src="images/resin1.png" alt="Resin class">
+        <div class="sliderControls">
+          <button type="button" onclick="prev('resin')">◀</button>
+          <span id="resinCount">1 / 5</span>
+          <button type="button" onclick="next('resin')">▶</button>
+        </div>
+      </div>
 
-            <!-- Pottery (no images – elegant placeholder) -->
-            <div class="choice">
-              <div class="choiceTop">
-                <div class="potteryPlaceholder" aria-label="Pottery">🏺</div>
-                <div>
-                  <h3>Pottery</h3>
-                  <p>A hands-on clay session — wheel or hand-building.</p>
-                </div>
-              </div>
-              <div class="btnRow">
-                <button class="soft" onclick="choose('Pottery')">Choose Pottery</button>
-              </div>
-            </div>
+      <div>
+        <h3>Resin class</h3>
+        <p>Create something glossy &amp; gorgeous (coasters, trays, jewellery).</p>
+      </div>
+    </div>
 
-            <p id="result" class="footer" style="margin-top:10px;"></p>
+    <div class="btnRow">
+      <button class="soft" type="button" onclick="choose('Resin class')">Choose Resin</button>
+    </div>
+  </div>
+
+  <!-- Candle (2 images) -->
+  <div class="choice">
+    <div class="choiceTop">
+      <div class="slider">
+        <img id="candleImg" src="images/candle1.png" alt="Candle making">
+        <div class="sliderControls">
+          <button type="button" onclick="prev('candle')">◀</button>
+          <span id="candleCount">1 / 2</span>
+          <button type="button" onclick="next('candle')">▶</button>
+        </div>
+      </div>
+
+      <div>
+        <h3>Candle making</h3>
+        <p>Pick a scent you love and pour your own candle(s).</p>
+      </div>
+    </div>
+
+    <div class="btnRow">
+      <button class="soft" type="button" onclick="choose('Candle making')">Choose Candle Making</button>
+    </div>
+  </div>
+
+  <!-- Pottery -->
+  <div class="choice">
+    <div class="choiceTop">
+      <div class="potteryPlaceholder" aria-label="Pottery">🏺</div>
+      <div>
+        <h3>Pottery</h3>
+        <p>A hands-on clay session — wheel or hand-building.</p>
+      </div>
+    </div>
+
+    <div class="btnRow">
+      <button class="soft" type="button" onclick="choose('Pottery')">Choose Pottery</button>
+    </div>
+  </div>
+
+  <p id="result" class="footer" style="margin-top:10px;"></p>
+</div>
           </div>
         </div>
       </div>
