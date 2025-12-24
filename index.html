@@ -300,6 +300,37 @@
       color: rgba(107,95,115,.86);
       font-size: 13px;
     }
+
+    .slider{
+  width:140px;
+  flex:0 0 auto;
+}
+
+.slider img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+.sliderControls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.sliderControls button{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.7);
+  border-radius:10px;
+  padding:2px 8px;
+  cursor:pointer;
+}
   </style>
 </head>
 
@@ -357,38 +388,50 @@ Just some pages that kindly wait.</div>
             <div class="choice">
               <div class="choiceTop">
                 <div class="carousel" aria-label="Resin images">
-                  <img src="images/resin1.png" alt="Resin class 1">
-                  <img src="images/resin2.png" alt="Resin class 2">
-                  <img src="images/resin3.png" alt="Resin class 3">
-                  <img src="images/resin4.png" alt="Resin class 4">
-                  <img src="images/resin5.png" alt="Resin class 5">
+                 <div class="choice">
+                  <div class="choiceTop">
+                    <div class="slider" data-images="5">
+                      <img id="resinImg" src="images/resin1.png" alt="Resin class">
+                      <div class="sliderControls">
+                        <button onclick="prev('resin')">◀</button>
+                        <span id="resinCount">1 / 5</span>
+                        <button onclick="next('resin')">▶</button>
+                      </div>
+                    </div>
+                
+                    <div>
+                      <h3>Resin class</h3>
+                      <p>Create something glossy & gorgeous (coasters, trays, jewellery).</p>
+                    </div>
+                  </div>
+                
+                  <div class="btnRow">
+                    <button class="soft" onclick="choose('Resin class')">Choose Resin</button>
+                  </div>
                 </div>
-                <div>
-                  <h3>Resin class</h3>
-                  <p>Create something glossy & gorgeous (coasters, trays, jewellery).</p>
-                </div>
-              </div>
-              <div class="btnRow">
-                <button class="soft" onclick="choose('Resin class')">Choose Resin</button>
-              </div>
-            </div>
 
             <!-- Candle (2 images) -->
-            <div class="choice">
-              <div class="choiceTop">
-                <div class="carousel" aria-label="Candle images">
-                  <img src="images/candle1.png" alt="Candle making 1">
-                  <img src="images/candle2.png" alt="Candle making 2">
-                </div>
-                <div>
-                  <h3>Candle making</h3>
-                  <p>Pick a scent you love and pour your own candle(s).</p>
+           <div class="choice">
+            <div class="choiceTop">
+              <div class="slider" data-images="2">
+                <img id="candleImg" src="images/candle1.png" alt="Candle making">
+                <div class="sliderControls">
+                  <button onclick="prev('candle')">◀</button>
+                  <span id="candleCount">1 / 2</span>
+                  <button onclick="next('candle')">▶</button>
                 </div>
               </div>
-              <div class="btnRow">
-                <button class="soft" onclick="choose('Candle making')">Choose Candle Making</button>
+          
+              <div>
+                <h3>Candle making</h3>
+                <p>Pick a scent you love and pour your own candle(s).</p>
               </div>
             </div>
+          
+            <div class="btnRow">
+              <button class="soft" onclick="choose('Candle making')">Choose Candle Making</button>
+            </div>
+          </div>
 
             <!-- Pottery (no images – elegant placeholder) -->
             <div class="choice">
@@ -429,6 +472,30 @@ Just some pages that kindly wait.</div>
       el.style.display = isOpen ? 'none' : 'block';
       if(!isOpen) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    const state = {
+  resin: 1,
+  candle: 1
+};
+
+function next(type){
+  const max = type === 'resin' ? 5 : 2;
+  state[type] = state[type] === max ? 1 : state[type] + 1;
+  update(type);
+}
+
+function prev(type){
+  const max = type === 'resin' ? 5 : 2;
+  state[type] = state[type] === 1 ? max : state[type] - 1;
+  update(type);
+}
+
+function update(type){
+  document.getElementById(type + "Img").src =
+    `images/${type}${state[type]}.png`;
+  document.getElementById(type + "Count").textContent =
+    `${state[type]} / ${type === 'resin' ? 5 : 2}`;
+}
 
     // Optional: email notifications via Formspree
     // 1) Create a Formspree form, copy its URL
